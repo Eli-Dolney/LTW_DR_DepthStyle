@@ -4,6 +4,10 @@ A DaVinci Resolve script that switches a clip from **normal picture** to a **vir
 
 Works in **DaVinci Resolve Free** and **DaVinci Resolve Studio**.
 
+<p align="center">
+  <img src="docs/preview.png" alt="Studio Depth Map look — subject dark, background light" width="640">
+</p>
+
 ![Before (color) and after (Studio depth map)](docs/before-after.jpg)
 
 <p align="center">
@@ -111,6 +115,7 @@ scripts/ltw_depth_style.py   # Resolve menu script
 scripts/ltw_depth_lib.py     # helpers (keep next to the script)
 fusion/LTW_DepthStyle.setting
 install.sh / install.bat
+docs/preview.png             # README hero (Studio depth look)
 docs/before-after.jpg
 docs/demo-hit.mp4            # color, then depth on the hit
 docs/demo-compare.mp4        # side by side
