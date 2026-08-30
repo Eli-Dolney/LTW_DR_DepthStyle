@@ -1,0 +1,65 @@
+{
+	Tools = ordered() {
+		MediaIn1 = MediaIn {
+			ExtentSet = true,
+			CtrlWZoom = false,
+			ViewInfo = operatorViewInfo { Pos = { 0, 0 } },
+		},
+		Blur1 = Blur {
+			Inputs = {
+				LockXY = Input { Value = 1 },
+				XBlurSize = Input { Value = 2.500 },
+				Input = Input {
+					SourceOp = "MediaIn1",
+					Source = "Output",
+				},
+			},
+			ViewInfo = operatorViewInfo { Pos = { 165, 0 } },
+		},
+		BrightnessContrast1 = BrightnessContrast {
+			Inputs = {
+				Contrast = Input { Value = 0.450 },
+				Gain = Input { Value = 1.05 },
+				Gamma = Input { Value = 0.9 },
+				Input = Input {
+					SourceOp = "Blur1",
+					Source = "Output",
+				},
+			},
+			ViewInfo = operatorViewInfo { Pos = { 330, 0 } },
+		},
+		Custom1 = Custom {
+			Inputs = {
+				RedExpression = Input { Value = "1-(0.299*r1+0.587*g1+0.114*b1)" },
+				GreenExpression = Input { Value = "1-(0.299*r1+0.587*g1+0.114*b1)" },
+				BlueExpression = Input { Value = "1-(0.299*r1+0.587*g1+0.114*b1)" },
+				AlphaExpression = Input { Value = "a1" },
+				Image1 = Input {
+					SourceOp = "BrightnessContrast1",
+					Source = "Output",
+				},
+			},
+			ViewInfo = operatorViewInfo { Pos = { 495, 0 } },
+		},
+		Transform1 = Transform {
+			Inputs = {
+				Size = Input { Value = 1.0000 },
+				Input = Input {
+					SourceOp = "Custom1",
+					Source = "Output",
+				},
+			},
+			ViewInfo = operatorViewInfo { Pos = { 660, 0 } },
+		},
+		MediaOut1 = MediaOut {
+			Inputs = {
+				Input = Input {
+					SourceOp = "Transform1",
+					Source = "Output",
+				},
+			},
+			ViewInfo = operatorViewInfo { Pos = { 825, 0 } },
+		}
+	},
+	ActiveTool = "Custom1"
+}
